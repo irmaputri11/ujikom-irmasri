@@ -15,9 +15,11 @@ class CreateKartuPendaftaransTable extends Migration
     {
         Schema::create('kartu_pendaftarans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kartu_barkode');
-            $table->string('petugas_kode');
-            $table->string('peminjaman_kode');
+            $table->string('kartu_barkode')->unique();
+            $table->unsignedBigInteger('petugas_kode');
+            $table->foreign('petugas_kode')->references('id')->on('petugas')->ondelete('cascade');
+            $table->unsignedBigInteger('peminjam_kode');
+            $table->foreign('peminjam_kode')->references('id')->on('peminjams')->ondelete('cascade');
             $table->date('kartu_tgl_pembuatan');
             $table->date('kartu_tgl_akhir');
             $table->boolean('kartu_status_aktif');

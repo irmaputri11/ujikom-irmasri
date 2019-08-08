@@ -14,6 +14,14 @@ class peminjam extends Model
 
     public function peminjaman()
     {
-        return $this->hasMany('App\peminjaman','id_peminjaman','peminjaman_kode');
+        return $this->hasMany('App\peminjaman','peminjama_kode');
+    }
+    public function kartu_pendaftarans()
+    {
+        return $this->hasMany('App\kartu_pendaftaran','peminjam_kode');
+    }
+    public function detail_pinjam()
+    {
+        return $this->hasMany('App\detail_pinjam','peminjam_kode');
     }
 }

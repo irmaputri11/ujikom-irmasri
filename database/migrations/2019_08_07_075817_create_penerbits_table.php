@@ -15,7 +15,7 @@ class CreatePenerbitsTable extends Migration
     {
         Schema::create('penerbits', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('penerbit_kode');
+            $table->string('penerbit_kode')->unique();
             $table->string('penerbit_nama');
             $table->string('penerbit_alamat');
             $table->integer('penerbit_telp');

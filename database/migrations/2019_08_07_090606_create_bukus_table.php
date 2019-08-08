@@ -15,9 +15,11 @@ class CreateBukusTable extends Migration
     {
         Schema::create('bukus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('buku_kode');
-            $table->string('kategori_kode');
-            $table->string('penerbit_kode');
+            $table->string('buku_kode')->unique();
+            $table->unsignedBigInteger('kategori_kode');
+            $table->foreign('kategori_kode')->references('id')->on('kategoris')->ondelete('cascade');
+            $table->unsignedBigInteger('penerbit_kode');
+            $table->foreign('penerbit_kode')->references('id')->on('penerbits')->ondelete('cascade');
             $table->string('buku_judul');
             $table->integer('buku_jumlah');
             $table->string('buku_diskripsi');

@@ -15,11 +15,11 @@ class CreatePeminjamsTable extends Migration
     {
         Schema::create('peminjams', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('peminjaman_kode');
-            $table->string('peminjaman_nama');
-            $table->string('peminjaman_alamat');
-            $table->Integer('peminjaman_telp');
-            $table->string('foto');
+            $table->string('peminjam_kode')->unique();
+            $table->string('peminjam_nama');
+            $table->string('peminjam_alamat');
+            $table->Integer('peminjam_telp');
+            $table->string('peminjam_foto');
             $table->timestamps();
         });
     }

@@ -15,8 +15,10 @@ class CreateDetailPinjamsTable extends Migration
     {
         Schema::create('detail_pinjams', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('peminjaman_kode');
-            $table->string('buku_kode');
+            $table->unsignedBigInteger('peminjam_kode');
+            $table->foreign('peminjam_kode')->references('id')->on('peminjams')->ondelete('cascade');
+            $table->unsignedBigInteger('buku_kode');
+            $table->foreign('buku_kode')->references('id')->on('bukus')->ondelete('cascade');
             $table->date('detail_tgl_kembali');
             $table->integer('detail_denda');
             $table->boolean('detail_status_kembali');

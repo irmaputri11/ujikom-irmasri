@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class peminjam extends Model
 {
     protected $fillable = [
-        'peminjaman_kode','peminjaman_nama','peminjaman_alamat',
-        'peminjaman_telp','peminjaman_foto'
+        'peminjam_kode','peminjam_nama','peminjam_alamat',
+        'peminjam_telp','peminjam_foto'
     ];
     public $timestamps = true;
 
@@ -16,7 +16,7 @@ class peminjam extends Model
     {
         return $this->hasMany('App\peminjaman','peminjama_kode');
     }
-    public function kartu_pendaftarans()
+    public function kartu_pendaftaran()
     {
         return $this->hasMany('App\kartu_pendaftaran','peminjam_kode');
     }

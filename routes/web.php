@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes(['register' => false]);
+
+Route::get('/home','HomeController@index')->name('home');
+Route::group(['prefix' => 'admin','middleware' => ['auth','role:admin']],function(){
+    Route::get('/admin', function () {
+        return 'hallo';
+    });
+    route::resource('User','UserCrontroller');
+});
+

@@ -15,7 +15,7 @@ class petugas extends Model
     {
         return $this->hasMany('App\peminjaman','petugas_kode');
     }
-    public function kartu_pendaftarans()
+    public function kartu_pendaftaran()
     {
         return $this->hasMany('App\kartu_pendaftaran','petugas_kode');
     }

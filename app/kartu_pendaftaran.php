@@ -12,4 +12,13 @@ class kartu_pendaftaran extends Model
     ];
     public $timestamps = true;
 
+    public function petugas()
+    {
+        return $this->belongsTo('App\petugas','petugas_kode');
+    }
+
+    public function peminjam()
+    {
+        return $this->belongsTo('App\peminjam','peminjam_kode');
+    }
 }

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 use Hash;
 
 class UserController extends Controller
@@ -15,7 +16,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::all();
+        $response = [
+            'success' => true,
+            'data' => $user,
+            'message' => 'Berhasil'
+        ];
+        return response()->json($response, 200);
     }
 
     /**
@@ -42,7 +49,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        $role = Role::where('name', 'superadmin')->first();
+        $role = Role::where('name', 'admin')->first();
         $user->attachRole($role);
 
         return response()->json('berhasil');

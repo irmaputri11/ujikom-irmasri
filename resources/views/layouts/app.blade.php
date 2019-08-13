@@ -33,7 +33,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                     
+                        @role('admin')
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="/">menu admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/kategori">menu admin</a>
+                        </li>
+                        @endrole
 
+                       
+                        @guest
+                        {{-- --}}
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="">menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">menu</a>
+                        </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->

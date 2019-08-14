@@ -19,7 +19,7 @@ class CreatePeminjamsTable extends Migration
             $table->string('peminjam_nama');
             $table->string('peminjam_alamat');
             $table->Integer('peminjam_telp');
-            $table->string('peminjam_foto');
+            $table->string('foto');
             $table->timestamps();
         });
     }

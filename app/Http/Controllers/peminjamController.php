@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\peminjam;
-use App\file;
+use file;
 
 class peminjamController extends Controller
 {
@@ -17,12 +17,7 @@ class peminjamController extends Controller
     public function index()
     {
         $peminjam = peminjam::all();
-        $response = [
-            'success' => true,
-            'data' => $user,
-            'message' => 'Berhasil'
-        ];
-        return reponse()->json($response, 200);
+        return view('peminjam.index',compact('peminjam'));
     }
 
     /**
@@ -32,8 +27,8 @@ class peminjamController extends Controller
      */
     public function create()
     {
-        $peminjam = peminjam::all($id);
-        return view('backend.peminjam.create',compact('peminjam'));
+        $peminjam = peminjam::all();
+        return view('peminjam.create',compact('peminjam'));
     }
 
     /**
@@ -49,7 +44,17 @@ class peminjamController extends Controller
         $peminjam->peminjam_nama = $request->peminjam_nama;
         $peminjam->peminjam_alamat = $request->peminjam_alamat;
         $peminjam->peminjam_telp = $request->peminjam_telp;
-        $peminjam->peminjam_foto = $request->peminjam_foto;
+        //foto
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $path = public_path() .'/assets/img';
+            $filename = str_random(6) . '_'
+            . $file->getClientOriginalName();
+            $upload = $file->move(
+                $path,$filename
+            );
+            $peminjam->foto = $filename;
+        }
         $peminjam->save();
         Session::flash("flash_notification",[
             "level" => "success",

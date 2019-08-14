@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\peminjam;
 use file;
+use Session;
 
 class peminjamController extends Controller
 {
@@ -19,7 +20,7 @@ class peminjamController extends Controller
         $peminjam = peminjam::all();
         return view('peminjam.index',compact('peminjam'));
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *
@@ -47,7 +48,7 @@ class peminjamController extends Controller
         //foto
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-            $path = public_path() .'/assets/img';
+            $path = public_path() .'/assets/img/';
             $filename = str_random(6) . '_'
             . $file->getClientOriginalName();
             $upload = $file->move(
@@ -72,13 +73,8 @@ class peminjamController extends Controller
      */
     public function show($id)
     {
-        $kategori = kategori::findOrfail($id);
-        $response = [
-            'success' => true,
-            'data' => $user,
-            'message' => 'Berhasil'
-        ];
-        return reponse()->json($response, 200);
+        $peminjam = peminjam::findOrfail($id);
+        return view('peminjam.show',compact('peminjam'));
     }
 
     /**
@@ -90,7 +86,7 @@ class peminjamController extends Controller
     public function edit($id)
     {
         $peminjam = peminjam::findOrfail($id);
-        return view('backend.peminjam.edit',compact('peminjam'));
+        return view('peminjam.edit',compact('peminjam'));
     }
 
     /**
@@ -107,7 +103,17 @@ class peminjamController extends Controller
         $peminjam->peminjam_nama = $request->peminjam_nama;
         $peminjam->peminjam_alamat = $request->peminjam_alamat;
         $peminjam->peminjam_telp = $request->peminjam_telp;
-        $peminjam->peminjam_foto = $request->peminjam_foto;
+        //foto
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $path = public_path() .'/assets/img/';
+            $filename = str_random(6) . '_'
+            . $file->getClientOriginalName();
+            $upload = $file->move(
+                $path,$filename
+            );
+            $peminjam->foto = $filename;
+        }
         $peminjam->save();
         Session::flash("flash_notification",[
             "level" => "success",
@@ -125,13 +131,13 @@ class peminjamController extends Controller
      */
     public function destroy($id)
     {
-        $kategori = kategori::findOrfail($id);
-    
+        $peminjam = peminjam::findOrfail($id);
+        $peminjam->delete();
         Session::flash("flash_notification",[
             "level" => "Success",
             "message" => "Berhasil menghapus<b>"
-                         . $kategori->nama_kategori."</b>"
+                         . $peminjam->peminjam_nama."</b>"
         ]);
-        return redirect()->route('kategori.index');
+        return redirect()->route('peminjam.index');
     }
 }

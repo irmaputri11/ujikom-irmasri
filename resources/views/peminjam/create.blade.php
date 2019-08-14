@@ -10,23 +10,23 @@
                     </center>
     
                     <div class="card-body">
-                        <form action="{{route('peminjam.store')}}" method="post">
+                        <form action="{{route('peminjam.store')}}" method="post" enctype="multipart/form-data" >
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="">kode</label>
-                                <input class="form-control" type="text" name="kode_peminjam" id="">
+                                <input class="form-control" type="text" name="peminjam_kode" id="">
                             </div>
                             <div class="form-group">
                                 <label for="">nama</label>
-                                <input class="form-control" type="text" name="nama_peminjam" id="">
+                                <input class="form-control" type="text" name="peminjam_nama" id="">
                             </div>
                             <div class="form-group">
                                 <label for="">alamat</label>
-                                <textarea class="form-control" name="alamat_peminjam" id="" cols="30" rows="10"></textarea>
+                                <textarea class="form-control" name="peminjam_alamat" id="" cols="30" rows="10"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="">telp</label>
-                                <input class="form-control" type="text" name="telp_peminjam" id="">
+                                <input class="form-control" type="text" name="peminjam_telp" id="">
                             </div>
                             <div class="form-group">
                                 <label for="">Foto</label>

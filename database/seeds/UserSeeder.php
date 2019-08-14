@@ -26,5 +26,6 @@ class UserSeeder extends Seeder
       $admin->password = Hash::make('rahasia');
       $admin->save();
       $admin->attachRole($adminRole);
+    
     }
 }

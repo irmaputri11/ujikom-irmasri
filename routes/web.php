@@ -25,6 +25,10 @@ Route::group(['prefix' => 'backend','middleware' => ['auth','role:admin']],funct
     Route::get('/', function () {
         return 'hallo';
     });
+    Route::get('/home', function () {
+        return 'home';
+    });
+
     route::resource('user','UserController');
     route::resource('peminjam','peminjamController');
 

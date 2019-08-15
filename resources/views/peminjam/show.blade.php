@@ -29,7 +29,7 @@
                                 <label for="">telp</label>
                                 <input class="form-control" type="text" disabled name="peminjam_telp" id="" value="{{$peminjam->peminjam_telp}}">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" disabled>
                                     <label for="">Foto</label>
                                     @if (isset($peminjam) && $peminjam->foto)
                                         <p>
@@ -39,7 +39,7 @@
                                             max-height:100px;border:1px;border-color:black;" alt="">
                                         </p>
                                     @endif
-                                    <input class="form-control 
+                                    {{-- <input class="form-control 
                                     @error('foto') is-invalid @enderror" type="file" 
                                     name="foto" id="" value="{{$peminjam->foto}}">
                                     @error('foto')
@@ -47,11 +47,10 @@
                                         <strong>{{$message}}</strong>
                                     </span>
                                     @enderror 
-                                </div>
+                                </div> --}}
                             <div class="form-group">
-                                <button type="submit" class="btn btn-outline-info">
-                                    Simpan Data
-                                </button>
+                                <a  name="" id="" class="btn btn-md btn-warning" 
+                                href="{{ route('peminjam.index') }}" role="button">kembali</a>
                             </div>
                         </form>
                     </div>

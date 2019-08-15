@@ -31,7 +31,10 @@ Route::group(['prefix' => 'backend','middleware' => ['auth','role:admin']],funct
 
     route::resource('user','UserController');
     route::resource('peminjam','peminjamController');
-
+    route::resource('penerbit','penerbitController');
+    route::resource('petugas','petugasController');
+    route::resource('kategori','kategoriController');
+    route::resource('peminjamen','peminjamenController');
 });
 
 // Route::get('peminjam', function () {

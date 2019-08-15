@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class peminjaman extends Model
+class peminjamen extends Model
 {
     protected $fillable = [
         'peminjaman_kode','petugas_kode','peminjam_kode','peminjaman_tgl',

@@ -52,6 +52,8 @@
                                 <button type="submit" class="btn btn-outline-info">
                                     Simpan Data
                                 </button>
+                                <a  name="" id="" class="btn btn-outline-warning"
+                                href="{{ route('peminjam.index') }}" role="button">kembali</a>
                             </div>
                         </form>
                     </div>
